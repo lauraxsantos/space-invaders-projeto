@@ -4,7 +4,7 @@ from sys import exit
 pygame.init()
 
 x = 300
-y = 400
+y = 350
 largura = 680
 altura = 440
 velocidade = 5
@@ -14,7 +14,7 @@ relogio = pygame.time.Clock()
 pygame.display.set_caption("Space Invaders")
 
 imgjogador = pygame.image.load("sprites/spaceship.png")
-jogador = pygame.transform.scale(imgjogador, (749 / 17, 542 / 17))
+jogador = pygame.transform.scale(imgjogador, (60, 53))
 
 
 def desenhojogador():
