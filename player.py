@@ -22,8 +22,8 @@ def desenhojogador():
 
 
 while True:
-    relogio.tick(32)
-    tela.fill((255, 255, 255))
+    relogio.tick(55)
+    tela.fill((0, 0, 0))
 
     desenhojogador()
 
@@ -35,7 +35,7 @@ while True:
         pass
     elif pygame.key.get_pressed()[pygame.K_LEFT]:
         x -= velocidade
-    if x >= 640:
+    if x >= 620:
         pass
     elif pygame.key.get_pressed()[pygame.K_RIGHT]:
         x += velocidade
