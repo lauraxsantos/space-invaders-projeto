@@ -1,15 +1,15 @@
 import pygame
 from sys import exit
-from player import Player
+from player1 import Player
 
 
 class Game:
     def __init__(self):
-        player_sprite = Player((340, 360))
+        player_sprite = Player((340, 360), 5, largura)
         self.player = player_sprite
 
     def run(self):
-        self.player.desenhar(tela)
+        self.player.run(tela)
 
 
 pygame.init()
@@ -24,7 +24,7 @@ pygame.display.set_caption("Space Invaders")
 game = Game()   # Atribui o Game() a game
 
 while True:
-    relogio.tick(32)
+    relogio.tick(60)
     tela.fill((30, 30, 30))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
