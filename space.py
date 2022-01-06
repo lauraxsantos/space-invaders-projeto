@@ -16,6 +16,10 @@ plano_de_fundo = pygame.image.load("sprites/plano de fundo.png")
 
 
 class Jogador(pygame.sprite.Sprite):
+    # cria a sprite do jogador
+    # o def __init___(self) inicia a classe é uma função obrigatória, depois vc coloca os parâmetros (se tiver) 
+    # o pygame.sprite.Sprite é um parâmetro do próprio pygame pra utilizar classes e criar sprites
+    # as instâncias nas classes começam com self
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load("sprites/spaceship.png")
@@ -23,7 +27,8 @@ class Jogador(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = [x, y]
         self.tiro = pygame.time.get_ticks()
-
+      
+    # Você pode criar outras funções (além da principal) específicas dentro da classe      
     def teclas(self):
         if pygame.key.get_pressed()[pygame.K_LEFT] and self.rect.left >= 0:
             self.rect.left -= velocidade
@@ -53,7 +58,8 @@ class Atirar(pygame.sprite.Sprite):
         if self.rect.y < 0:
             self.kill()
 
-
+# grupos de sprites
+# chamo a função e coloco dentro da variável nave, depois crio um grupo de sprites e adiciono a variável nele
 nave = Jogador(int(largura / 2), altura - 50)
 nave_gp = pygame.sprite.Group()
 nave_gp.add(nave)
@@ -69,12 +75,15 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
+    
+    # coloquei a classe Jogador dentro da variável nave e chamei a função teclas
     nave.teclas()
-
+    
+ 
     nave_gp.update()
     atirar_gp.update()
-
+    
+    # aqui eu desenho o que tem nos grupos de sprites (as sprites)    
     atirar_gp.draw(tela)
     nave_gp.draw(tela)
 
