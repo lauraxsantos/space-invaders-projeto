@@ -59,12 +59,45 @@ class Atirar(pygame.sprite.Sprite):
         if self.rect.y < 0:
             self.kill()
 
+            
+class Aliens(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.sprites = []
+        self.image = pygame.image.load("sprites/alien3.png")
+        self.image = pygame.transform.scale(self.image, (30, 23))
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y]
+
+        self.mov = 1
+        self.cont = 0
+
+    def update(self):
+        #  move o retângulo dos aliens para a direita
+        # quando o contador chega a 80 o alien da ponta chega na borda da tela
+        # então o valor do movimento  fica negativo para ele começar a se mover para esquerda
+        self.rect.x += self.mov
+        self.cont += 1
+        if abs(self.cont) > 80:
+            self.mov *= -1
+            if self.mov > 0:
+                self.cont = 0
+            if self.mov < 0:
+                self.cont = -80 
+
 # grupos de sprites
 # chamo a função e coloco dentro da variável nave, depois crio um grupo de sprites e adiciono a variável nele
 nave = Jogador(int(largura / 2), altura - 50)
 nave_gp = pygame.sprite.Group()
 nave_gp.add(nave)
 atirar_gp = pygame.sprite.Group()
+aliens_gp = pygame.sprite.Group()
+
+# cria os aliens na tela como uma matriz
+for linha in range(4):
+    for coluna in range(4):
+        alien = Aliens(100 + linha * 100, 50 + coluna * 50)
+        aliens_gp.add(alien)
 
 while True:
     relogio.tick(60)
@@ -83,9 +116,11 @@ while True:
    # atualizando as classes a cada looping    
     nave_gp.update()
     atirar_gp.update()
+    aliens_gp.update()
     
     # aqui eu desenho o que tem nos grupos de sprites (as sprites)    
     atirar_gp.draw(tela)
     nave_gp.draw(tela)
-
+    aliens_gp.draw(tela)
+    
     pygame.display.flip()
