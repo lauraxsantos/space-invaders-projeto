@@ -39,6 +39,7 @@ class Jogador(pygame.sprite.Sprite):
         # milisegundos
         # quando aperta espaço se o tempo em que a função for chamada menos o tempo onde o último disparo foi efetuado for maior que o tempo de espera, dispara o laser
         if pygame.key.get_pressed()[pygame.K_SPACE] and tempo_atirar - self.tiro >= espera_laser:
+        # coloco a classe Atirar dentro da variável laser e adiciono ao grupo de sprites
             laser = Atirar(self.rect.centerx, self.rect.top)
             atirar_gp.add(laser)
             self.tiro = pygame.time.get_ticks()
@@ -79,7 +80,7 @@ while True:
     # coloquei a classe Jogador dentro da variável nave e chamei a função teclas
     nave.teclas()
     
- 
+   # atualizando as classes a cada looping    
     nave_gp.update()
     atirar_gp.update()
     
