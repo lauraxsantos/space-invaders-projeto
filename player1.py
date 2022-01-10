@@ -39,7 +39,9 @@ class Player(pygame.sprite.Sprite):
             self.start_reload = pygame.time.get_ticks()
 
     def disparo(self):
+        pygame.mixer.music.load('tiros_player.mp3')
         self.tiros.add(Atirar(self.rect.center, -5, "blue"))
+        pygame.mixer.music.play()
 
     def reloaded(self):
         if self.reloading:

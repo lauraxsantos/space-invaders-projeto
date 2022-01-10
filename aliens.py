@@ -10,6 +10,3 @@ class Aliens(pygame.sprite.Sprite):
 
     def update(self, velocity):
         self.rect.x += velocity
-
-    def move_down(self):
-        self.rect.y += 1
